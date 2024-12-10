@@ -1,0 +1,5 @@
+/.env
+/dataset.json
+/ecommerce-faq.json
+/experiments
+/trained-model
