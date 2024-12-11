@@ -177,7 +177,7 @@ def answer_questions():
                 break  # Valid answer format
 
         # write question and answer to a file
-        with open(f"quiz/runs/quiz_answers_{current_time}.txt", "a", encoding="utf-8") as f:
+        with open(f"quiz/runs_basemodel/quiz_answers_{current_time}.txt", "a", encoding="utf-8") as f:
             f.write(f"Question: {q['question']}\nAnswer: {answer}\nCorrect answer:{q['correct']}\nGenerated unpreprocessed sequence: {generated_unpreprocessed_sequence}\n--------------------------------------------------------------------\n\n")
 
         results[q['question_id']] = answer
@@ -223,5 +223,5 @@ print(f"Medium score: {count/iterations*100}%\tMedium meme score: {meme/iteratio
 import pickle
 
 current_time = time.strftime("%m%d-%H%M%S")
-with open(f"quiz/runs/quiz_results_{current_time}.pkl", "wb") as f:
+with open(f"quiz/runs_basemodel/quiz_results_{current_time}.pkl", "wb") as f:
     pickle.dump(results, f)
