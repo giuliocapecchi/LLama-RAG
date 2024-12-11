@@ -3,7 +3,7 @@
 /ecommerce-faq.json
 /experiments
 /trained-model
-*.json
+
 ir
 kill_tensorboard.py
 /quiz/runs
