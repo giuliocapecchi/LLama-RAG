@@ -1,0 +1,842 @@
+[
+    {
+        "question": "What is a key limitation of the Rocchio algorithm when applying relevance feedback in Information Retrieval?",
+        "answers": [
+            "It only uses positive feedback from relevant documents",
+            "It may suffer from query drift when non-relevant terms are included",
+            "It assumes that all terms in non-relevant documents have negative weights",
+            "It cannot handle queries with more than 10 terms"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 1
+    },
+    {
+        "question": "Which of the following methods is most vulnerable to query drift during pseudo-relevance feedback?",
+        "answers": [
+            "Boolean retrieval",
+            "Term-at-a-time (TAAT) query processing",
+            "Vector space model with pseudo-relevance feedback",
+            "Document-at-a-time (DAAT) query processing"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 2
+    },
+    {
+        "question": "What is the primary challenge in applying machine learning algorithms to ranking problems in search engines?",
+        "answers": [
+            "Most ranking algorithms assume independence between terms",
+            "The loss functions used in traditional classification tasks are unsuitable for ranking",
+            "Relevance judgments are always subjective and inconsistent",
+            "Machine learning cannot capture the user's implicit feedback"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 3
+    },
+    {
+        "question": "How does the PageRank algorithm account for the issue of dead-end pages in a web graph?",
+        "answers": [
+            "It gives zero weight to dead-end pages",
+            "It uses teleportation to redistribute probability to other pages",
+            "It assigns negative scores to dead-end pages",
+            "It ignores dead-end pages entirely"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 4
+    },
+    {
+        "question": "In the Learning to Rank (LTR) approach, what is the purpose of a cascade?",
+        "answers": [
+            "To minimize the number of indexed documents",
+            "To progressively refine the ranked list of documents at multiple stages",
+            "To cluster documents into semantically similar groups",
+            "To reduce training data size for the model"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 5
+    },
+    {
+        "question": "Which problem can arise when applying pseudo-relevance feedback (PRF) without considering query drift?",
+        "answers": [
+            "The original query is expanded with highly specific terms",
+            "The feedback assumes that non-relevant documents are useful",
+            "The query becomes too similar to the non-relevant documents",
+            "The query expands with irrelevant terms, reducing precision"
+        ],
+        "correct": 4,
+        "category": 0,
+        "question_id": 6
+    },
+    {
+        "question": "In term partitioning for distributed search systems, what is the main disadvantage?",
+        "answers": [
+            "It increases the memory required for storing the vocabulary",
+            "Query results require merging from multiple query servers, increasing response time",
+            "Only a limited number of queries can be handled in parallel",
+            "It overburdens a single server with too many documents"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 7
+    },
+    {
+        "question": "What is a major advantage of using Markov Chains in PageRank computation?",
+        "answers": [
+            "They are easy to implement in web crawlers",
+            "They allow the prediction of future link structures",
+            "They model the steady-state probabilities of pages based on random walks",
+            "They assume every page has equal relevance"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 8
+    },
+    {
+        "question": "In machine learning-based ranking systems, which type of features is most often associated with link-based analysis of web documents?",
+        "answers": [
+            "Query-document features",
+            "Query-independent features",
+            "Field-based features",
+            "Query-only features"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 9
+    },
+    {
+        "question": "What does the anchor text provide in link-based ranking models such as PageRank?",
+        "answers": [
+            "It represents the textual content of the target page",
+            "It provides context about the page that created the link",
+            "It enhances the ranking of the page that the link points to",
+            "It reduces the rank of pages with few links"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 10
+    },
+    {
+        "question": "In distributed search, what is the primary role of a broker in the retrieval system?",
+        "answers": [
+            "To store and maintain the inverted index",
+            "To merge results from multiple shards into a single ranked list",
+            "To prioritize certain queries based on user behavior",
+            "To manage network traffic between users and query servers"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 11
+    },
+    {
+        "question": "Why is it essential to perform feature selection in machine learning for ranking tasks?",
+        "answers": [
+            "To reduce the size of the training data",
+            "To improve the efficiency of the ranking model by selecting the most relevant features",
+            "To minimize the effect of irrelevant documents in the final ranking",
+            "To ensure that only query-independent features are used"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 12
+    },
+    {
+        "question": "In a ranking cascade, why are the majority of documents discarded after the first stage?",
+        "answers": [
+            "To reduce computational cost in subsequent stages",
+            "To prevent overfitting in machine learning models",
+            "To focus on only those documents that are very similar to the query",
+            "To ensure that all documents receive equal consideration"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 13
+    },
+    {
+        "question": "What is the main challenge in combining multiple sources of feedback (explicit and implicit) in an IR system?",
+        "answers": [
+            "Explicit feedback is always more reliable than implicit feedback",
+            "Implicit feedback is difficult to interpret and may not reflect true user preferences",
+            "Combining them requires a fully supervised machine learning approach",
+            "Both types of feedback tend to conflict and decrease retrieval accuracy"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 14
+    },
+    {
+        "question": "In the context of relevance feedback, what is the primary purpose of re-weighting terms?",
+        "answers": [
+            "To penalize irrelevant terms that appear in non-relevant documents",
+            "To emphasize terms that appear more frequently in relevant documents",
+            "To remove stop words from the query",
+            "To adjust the ranking algorithm dynamically based on user interaction"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 15
+    },
+    {
+        "question": "How does the Rocchio algorithm modify a query vector in response to user feedback?",
+        "answers": [
+            "By penalizing terms in documents the user has not clicked on",
+            "By adjusting the vector based on both relevant and non-relevant documents",
+            "By adding query terms from non-relevant documents",
+            "By reducing the term weight of frequently occurring terms"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 16
+    },
+    {
+        "question": "Which feature of a webpage is NOT typically used as a query-independent ranking signal?",
+        "answers": [
+            "The number of incoming hyperlinks",
+            "The length of the page title",
+            "The frequency of terms matching the query",
+            "The URL structure"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 17
+    },
+    {
+        "question": "In distributed search architectures, why might a hybrid approach between document partitioning and term partitioning be used?",
+        "answers": [
+            "To avoid query duplication between multiple search servers",
+            "To balance the computational load across servers while improving result relevance",
+            "To minimize the amount of memory required by the query servers",
+            "To ensure that rare terms are given more weight during query processing"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 18
+    },
+    {
+        "question": "Which type of learning-to-rank task explicitly considers the relative order of documents rather than just their individual scores?",
+        "answers": [
+            "Point-wise",
+            "Pair-wise",
+            "List-wise",
+            "Class-wise"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 19
+    },
+    {
+        "question": "What is a major limitation of point-wise approaches in Learning to Rank (LTR) tasks, compared to pair-wise and list-wise approaches?",
+        "answers": [
+            "They rely on hand-crafted features",
+            "They do not consider the relative order of documents in the ranking",
+            "They require significantly more training data to perform well",
+            "They are inefficient in terms of computational complexity"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 20
+    },
+    {
+        "question": "In Star Wars: Episode V - The Empire Strikes Back (1980), what is the name of the planet where Luke Skywalker trains with Yoda?",
+        "answers": [
+            "Endor",
+            "Tatooine",
+            "Hoth",
+            "Dagobah"
+        ],
+        "correct": 4,
+        "category": 1,
+        "question_id": 21
+    },
+    {
+        "question": "In Back to the Future (1985), what speed must the DeLorean reach to initiate time travel?",
+        "answers": [
+            "60 miles per hour",
+            "88 miles per hour",
+            "100 miles per hour",
+            "120 miles per hour"
+        ],
+        "correct": 2,
+        "category": 1,
+        "question_id": 22
+    },
+    {
+        "question": "In Indiana Jones and the Last Crusade (1989), what is the object that Indiana Jones seeks to recover?",
+        "answers": [
+            "The Ark of the Covenant",
+            "The Holy Grail",
+            "The Crystal Skull",
+            "The Staff of Ra"
+        ],
+        "correct": 2,
+        "category": 1,
+        "question_id": 23
+    },
+    {
+        "question": "In The Matrix (1999), what color pill does Neo take to learn the truth about the Matrix?",
+        "answers": [
+            "Blue",
+            "Red",
+            "Green",
+            "Yellow"
+        ],
+        "correct": 2,
+        "category": 1,
+        "question_id": 24
+    },
+    {
+        "question": "Which 1979 science fiction movie directed by Ridley Scott features the character Ellen Ripley?",
+        "answers": [
+            "Blade Runner",
+            "Alien",
+            "The Terminator",
+            "Dune"
+        ],
+        "correct": 2,
+        "category": 1,
+        "question_id": 25
+    },
+    {
+        "question": "What is the function of a posting list in an inverted index?",
+        "answers": [
+            "It stores a list of stop words",
+            "It contains the locations of a term in documents",
+            "It compresses the text into binary format",
+            "It orders documents alphabetically"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 26
+    },
+    {
+        "question": "What are stop words in text processing?",
+        "answers": [
+            "Words frequently removed from text as they have little meaning",
+            "Words with high semantic value",
+            "Characters that cannot be encoded",
+            "Tokens with more than one meaning"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 27
+    },
+    {
+        "question": "What is a code point in Unicode?",
+        "answers": [
+            "The smallest unit of a word",
+            "A numeric value assigned to a character",
+            "A byte sequence used in UTF-8",
+            "An encoding standard"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 28
+    },
+    {
+        "question": "In the context of information retrieval, what is the primary function of a term-document incidence matrix?",
+        "answers": [
+            "To display the number of unique terms in a collection",
+            "To map terms to their frequency in a document",
+            "To represent the presence or absence of terms in a set of documents",
+            "To rank documents based on their relevance to a query"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 29
+    },
+    {
+        "question": "Which of the following is a common challenge in exact matching in IR?",
+        "answers": [
+            "Handling case-sensitive queries",
+            "Missing documents with synonyms for query terms",
+            "Ranking documents by word length",
+            "Tokenizing multiword expressions"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 30
+    },
+    {
+        "question": "What is a corpus in text processing?",
+        "answers": [
+            "A single document",
+            "A collection of text or speech documents",
+            "A list of token types",
+            "A table of contents"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 31
+    },
+    {
+        "question": "How many bytes can UTF-8 use to encode a character?",
+        "answers": [
+            "1 to 4 bytes",
+            "2 to 6 bytes",
+            "1 to 6 bytes",
+            "4 bytes only"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 32
+    },
+    {
+        "question": "In tokenization, what is a clitic?",
+        "answers": [
+            "A word that doesn't stand on its own",
+            "A sequence of punctuation marks",
+            "A special character used in UTF-8",
+            "A word with more than one meaning"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 33
+    },
+    {
+        "question": "What does case folding involve in text normalization?",
+        "answers": [
+            "Replacing stop words",
+            "Transforming all text to uppercase",
+            "Reducing all letters to lowercase",
+            "Removing punctuation"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 34
+    },
+    {
+        "question": "What range of values does ASCII encoding use to represent characters?",
+        "answers": [
+            "0 to 128",
+            "0 to 255",
+            "128 to 1023",
+            "256 to 1024"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 35
+    },
+    {
+        "question": "What is a key challenge in information retrieval from unstructured data?",
+        "answers": [
+            "Matching exact keywords",
+            "Defining clear, unambiguous queries",
+            "Searching structured databases",
+            "Handling large, pre-indexed collections"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 36
+    },
+    {
+        "question": "Which of the following statements about the Unicode standard is true?",
+        "answers": [
+            "Unicode defines how characters are encoded as bytes.",
+            "Every Unicode character has a unique code point.",
+            "Unicode cannot represent characters from all languages.",
+            "The Unicode Standard is a character encoding scheme."
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 37
+    },
+    {
+        "question": "What is the primary purpose of an inverted index in information retrieval?",
+        "answers": [
+            "To rank documents by relevance",
+            "To map terms to their locations in documents",
+            "To tokenize documents into words",
+            "To compress text files"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 38
+    },
+    {
+        "question": "What does TF-IDF stand for in text retrieval?",
+        "answers": [
+            "Term Frequency-Indexed Document Frequency",
+            "Token Frequency-Inverse Document Frequency",
+            "Term Frequency-Inverse Document Frequency",
+            "Token Frequency-Indexed Data Factor"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 39
+    },
+    {
+        "question": "What is a direct index used for in an IR system?",
+        "answers": [
+            "To map documents to terms and their frequencies",
+            "To store binary sequences of text",
+            "To rank documents by their length",
+            "To encode characters in UTF-8"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 40
+    },
+    {
+        "question": "What is the purpose of Heap's Law in token analysis?",
+        "answers": [
+            "To predict vocabulary growth as more tokens are added",
+            "To measure token frequency in a document",
+            "To sort tokens alphabetically",
+            "To compress large text files"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 41
+    },
+    {
+        "question": "What is the purpose of ranked retrieval in an IR system?",
+        "answers": [
+            "To return documents alphabetically",
+            "To order documents based on their relevance to a query",
+            "To remove irrelevant documents",
+            "To tokenize documents"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 42
+    },
+    {
+        "question": "What is the main goal of text normalization?",
+        "answers": [
+            "Tokenizing words",
+            "Putting words into a standard format",
+            "Counting word frequency",
+            "Encoding text in UTF-8"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 43
+    },
+    {
+        "question": "Which stemming algorithm is most commonly used for English?",
+        "answers": [
+            "Luhn's Algorithm",
+            "Porter's Algorithm",
+            "Zipf's Law",
+            "Hamming Algorithm"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 44
+    },
+    {
+        "question": "What is the goal of stemming in text processing?",
+        "answers": [
+            "To count the frequency of words",
+            "To reduce words to their base or root form",
+            "To remove stop words",
+            "To convert text into binary form"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 45
+    },
+    {
+        "question": "What is a major assumption in the Binary Independence Model (BIM)?",
+        "answers": [
+            "Terms in a document are dependent on each other",
+            "The relevance of each document is dependent on other documents",
+            "Term occurrences in a document are independent",
+            "Term occurrences in different documents are dependent on each other"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 46
+    },
+    {
+        "question": "In the context of ranking models, what is the primary challenge of using the BM25 formula for highly skewed document length distributions?",
+        "answers": [
+            "It penalizes short documents too severely",
+            "It assumes term frequency is proportional to document length",
+            "It overly emphasizes term frequency over document frequency",
+            "It can over-normalize the term weights in longer documents"
+        ],
+        "correct": 4,
+        "category": 0,
+        "question_id": 47
+    },
+    {
+        "question": "Which of these comic book characters is NOT part of the DC Comics universe?",
+        "answers": [
+            "Wonder Woman",
+            "Green Lantern",
+            "Iron Man",
+            "The Flash"
+        ],
+        "correct": 3,
+        "category": 1,
+        "question_id": 48
+    },
+    {
+        "question": "What is the goal of the Probability Ranking Principle (PRP) in information retrieval?",
+        "answers": [
+            "To rank documents by the probability of relevance",
+            "To minimize the number of non-relevant documents retrieved",
+            "To calculate the cumulative recall across queries",
+            "To create a Boolean retrieval system"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 49
+    },
+    {
+        "question": "What is a major drawback of using Zipf's Law in vocabulary management?",
+        "answers": [
+            "Frequent terms dominate the vocabulary",
+            "It cannot handle large document collections",
+            "It cannot predict rare term occurrences",
+            "Vocabulary size becomes static over time"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 50
+    },
+    {
+        "question": "What is the main purpose of a term in full-text indexing?",
+        "answers": [
+            "To extract important keywords",
+            "To create inverted lists",
+            "To separate symbols",
+            "To store URLs"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 51
+    },
+    {
+        "question": "Which structure is NOT typically built during the indexing process?",
+        "answers": [
+            "Inverted index",
+            "Document lexicon",
+            "Posting list",
+            "Document index"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 52
+    },
+    {
+        "question": "In the vector space model, what is cosine similarity used for?",
+        "answers": [
+            "To calculate document frequency",
+            "To compute the angle between query and document vectors",
+            "To normalize term frequency.",
+            "To adjust document rank"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 53
+    },
+    {
+        "question": "Which statement is true about the Discounted Cumulative Gain (DCG) metric?",
+        "answers": [
+            "It is only used in Boolean retrieval",
+            "It favors shorter documents",
+            "It accounts for the rank of relevant documents",
+            "It ignores multi-graded relevance"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 54
+    },
+    {
+        "question": "In Dungeons & Dragons, which of the following dice is most commonly used for determining success in combat or actions?",
+        "answers": [
+            "D6 (six-sided die)",
+            "D8 (eight-sided die)",
+            "D20 (twenty-sided die)",
+            "D10 (ten-sided die)"
+        ],
+        "correct": 3,
+        "category": 1,
+        "question_id": 55
+    },
+    {
+        "question": "Why does the Probability Ranking Principle (PRP) not always guarantee optimal retrieval results in practice?",
+        "answers": [
+            "The independence assumption between terms is often violated",
+            "Relevance judgments are subjective and vary significantly",
+            "The probabilistic estimates rely on perfect knowledge of the user's needs",
+            "The ranking does not account for document verbosity or scope"
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 56
+    },
+    {
+        "question": "When creating an inverted list, how are postings typically stored for Boolean retrieval?",
+        "answers": [
+            "(docid, term frequency)",
+            "(docid, impact score)",
+            "(docid, list of positions)",
+            "docid only"
+        ],
+        "correct": 4,
+        "category": 0,
+        "question_id": 57
+    },
+    {
+        "question": "When using the vector space model, what is a major limitation of using cosine similarity for document ranking in very large-scale text collections?",
+        "answers": [
+            "It does not account for document length normalization",
+            "The calculation becomes inefficient due to high dimensionality",
+            "Cosine similarity favors longer documents over shorter ones",
+            "It fails to consider the relevance of common phrases in a query"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 58
+    },
+    {
+        "question": "In the \"Star Wars\" universe, what is the name of the planet where Anakin Skywalker loses his duel against Obi-Wan Kenobi?",
+        "answers": [
+            "Tatooine",
+            "Hoth",
+            "Mustafar",
+            "Naboo"
+        ],
+        "correct": 3,
+        "category": 1,
+        "question_id": 59
+    },
+    {
+        "question": "In The Matrix movie series, what is Neo's real name?*",
+        "answers": [
+            "Thomas Anderson",
+            "John Connor",
+            "Peter Parker",
+            "Jason Bourne"
+        ],
+        "correct": 1,
+        "category": 1,
+        "question_id": 60
+    },
+    {
+        "question": "How does BM25 differ from TF-IDF in document ranking?",
+        "answers": [
+            "It adjusts term frequency by document length",
+            "It only uses Boolean retrieval methods",
+            "It focuses on rare terms more than frequent terms",
+            "It penalizes documents with high pagerank."
+        ],
+        "correct": 1,
+        "category": 0,
+        "question_id": 61
+    },
+    {
+        "question": "How does TF-IDF weighting balance term frequency and document frequency?",
+        "answers": [
+            "It gives equal weight to all terms",
+            "It penalizes frequently occurring terms",
+            "It boosts terms that occur infrequently",
+            "It normalizes query terms"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 62
+    },
+    {
+        "question": "What does the Mean Average Precision (MAP) represent in information retrieval?",
+        "answers": [
+            "The number of relevant documents in a query",
+            "The average precision across multiple queries",
+            "The maximum precision for a single query",
+            "The recall of the top document"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 63
+    },
+    {
+        "question": "Which measure is best suited for summarizing both precision and recall in a single number?",
+        "answers": [
+            "Cosine similarity",
+            "F-measure",
+            "Inverse document frequency",
+            "Jaccard coefficient"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 64
+    },
+    {
+        "question": "In Star Trek: The Next Generation, what is the name of the android character played by Brent Spiner?",
+        "answers": [
+            "Worf",
+            "Data",
+            "Riker",
+            "La Forge"
+        ],
+        "correct": 2,
+        "category": 1,
+        "question_id": 65
+    },
+    {
+        "question": "Which of the following metrics is used to measure overlap between two *1/1 sets?",
+        "answers": [
+            "Jaccard Coefficient",
+            "Precision",
+            "Recall",
+            "F-measure"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 66
+    },
+    {
+        "question": "How does keyword indexing differ from full-text indexing?",
+        "answers": [
+            "It only indexes common terms",
+            "It indexes every single word in a document",
+            "It indexes only the most important terms",
+            "It avoids using stop words"
+        ],
+        "correct": 3,
+        "category": 0,
+        "question_id": 67
+    },
+    {
+        "question": "In a ranked retrieval system, what does a score measure?",
+        "answers": [
+            "The number of documents retrieved",
+            "The similarity between the query and the document",
+            "The rank of a document in the search engine",
+            "The number of indexed terms"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 68
+    },
+    {
+        "question": "In document-at-a-time (DAAT) retrieval, how is document traversal handled?",
+        "answers": [
+            "By traversing posting lists one term at a time",
+            "By processing all query terms in parallel",
+            "By scoring only the top documents",
+            "By storing document frequencies separately"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 69
+    },
+    {
+        "question": "What is the role of the document index in a search engine?",
+        "answers": [
+            "To store term frequencies",
+            "To store document lengths and URLS",
+            "To rank documents by their relevance",
+            "To index terms by their impact"
+        ],
+        "correct": 2,
+        "category": 0,
+        "question_id": 70
+    }
+]
