@@ -130,13 +130,16 @@ def extract_questions(file_path):
         question = {
             "question": qplusa,
             "correct": item.get("correct", ""),
-            "category": item.get("category", "")
+            "category": item.get("category", ""),
+            "question_id": item.get("question_id", "")
         }
         questions.append(question)
     return questions
 
 
-questions = extract_questions('quiz/merged_quiz.json')
+questions = extract_questions('quiz/quiz.json')
+# count all the meme questions
+meme_questions = [q for q in questions if int(q['category']) == 1]
 
 import time
 from tqdm import tqdm
@@ -146,18 +149,18 @@ def answer_questions():
     count = 0
     meme = 0
     error = 0
-    # count all the meme questions
-    meme_questions = [q for q in questions if int(q['category']) == 1]
-    print(f"Total normal questions: {len(questions)-len(meme_questions)}\tTotal meme questions: {len(meme_questions)}")
+    results = {}
+    
     current_time = time.strftime("%m%d-%H%M%S")
 
-    for q in tqdm(questions, total=len(questions), desc="Answering questions...", unit="question"):
+    pbar = tqdm(questions, total=len(questions), desc="Answering questions...", unit="question")
+    for q in pbar:
         base_prompt = "You are an AI assistant. Your task is to provide the correct answer to the following question by outputting only the number (1, 2, 3, or 4) corresponding to the correct option. Do not include any additional text in your response."
         prompt = f"{base_prompt}\n{q['question']}".strip()
         encoding = tokenizer(prompt, return_tensors="pt").to(device)
         answer = ""
         generated_unpreprocessed_sequence = ""
-        for _ in range(3):  # TODO : sei qui , il modello genera risposte a caso
+        for _ in range(3):  # se il formato della risposta non è corretto, riprova fino a 3 volte
             with torch.inference_mode():
                 outputs = model.generate(
                     input_ids=encoding.input_ids,
@@ -177,37 +180,48 @@ def answer_questions():
         with open(f"quiz/runs/quiz_answers_{current_time}.txt", "a", encoding="utf-8") as f:
             f.write(f"Question: {q['question']}\nAnswer: {answer}\nCorrect answer:{q['correct']}\nGenerated unpreprocessed sequence: {generated_unpreprocessed_sequence}\n--------------------------------------------------------------------\n\n")
 
+        results[q['question_id']] = answer
+
         if len(answer) != 1 or answer not in "1234":
             error += 1
-            tqdm.write(f"Correct: {count}/{len(questions)-len(meme_questions)} | Meme questions: {meme}/{len(meme_questions)} | Formatting errors: {error}")
-            continue
-
-        if str(q['correct']) == answer:
-            if int(q['category']) == 0:
-                count += 1
-            elif int(q['category']) == 1:
-                meme += 1
-            else:
-                print("Error : category not valid for prompt - >",prompt)
+        else: # the format is correct, now check if the answer is correct
+            if str(q['correct']) == answer:
+                if int(q['category']) == 0: # normal question
+                    count += 1
+                elif int(q['category']) == 1: # meme question
+                    meme += 1
+                else:
+                    print("Error : category not valid for prompt - >",prompt)
 
         # aggiungi correct e meme alla tqdm bar
-        tqdm.write(f"Corrects: {count}/{len(questions)-len(meme_questions)} | Meme questions: {meme}/{len(meme_questions)} | Formatting errors: {error}")
+        pbar.set_postfix(Corrects=f"{count}/{len(questions)-len(meme_questions)}", Meme=f"{meme}/{len(meme_questions)}", Errors=error)
         
     
-    print("-------------------------\nFINISHED RUN. Error count: ",error)
-    return count/40, meme/5
+    print("-------------------------\tFINISHED RUN. Error count: ",error, "-------------------------")
+    return results, count/60*100, meme/10*100
 
 
 count = 0
 meme = 0
 iterations = 10
+results = {}
+
+print(f"Total normal questions: {len(questions)-len(meme_questions)}\tTotal meme questions: {len(meme_questions)}")
 
 for i in range(iterations):
-    count_i, meme_i = answer_questions()
+    results_new, count_i, meme_i = answer_questions()
     count += count_i
     meme += meme_i
-    print(f"Epoch : {i}) Medium score: {count}\tMedium meme score: {meme}")
+    print(f"Epoch : {i}) Medium score: {count_i}\tMedium meme score: {meme_i}\n\n")
+    results[i] = results_new
 
 # print medium score
 print("----------------------------------------------------------------------------------")
 print(f"Medium score: {count/iterations*100}%\tMedium meme score: {meme/iterations*100}%")
+
+# pickle results
+import pickle
+
+current_time = time.strftime("%m%d-%H%M%S")
+with open(f"quiz/runs/quiz_results_{current_time}.pkl", "wb") as f:
+    pickle.dump(results, f)
