@@ -5,5 +5,5 @@
 /trained-model
 *.json
 ir
-quiz
 kill_tensorboard.py
+/quiz/runs
