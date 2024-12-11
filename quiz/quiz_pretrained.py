@@ -46,7 +46,7 @@ login(token=HF_TOKEN)
 
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-MODEL_NAME = "meta-llama/Llama-3.2-3B" # 3B
+MODEL_NAME = "meta-llama/Llama-3.2-3B-Instruct"
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -104,9 +104,9 @@ print_trainable_parameters(model)
 
 
 generation_config = model.generation_config
-generation_config.max_new_tokens = 200
+generation_config.max_new_tokens = 100
 generation_config.temperature = 0.1
-generation_config.top_p = 0.7
+generation_config.top_p = 1.0
 generation_config.num_return_sequences = 1
 generation_config.pad_token_id = tokenizer.eos_token_id
 generation_config.eos_token_id = tokenizer.eos_token_id
@@ -139,20 +139,9 @@ def extract_questions(file_path):
 questions = extract_questions('quiz/merged_quiz.json')
 
 import time
-
-def profile(f):
-    def f_timer(*args, **kwargs):
-        start = time.time()
-        result = f(*args, **kwargs)
-        end = time.time()
-        ms = (end - start) * 1000
-        print(f"{f.__name__} ({ms:.3f} ms)")
-        return result
-    return f_timer
-
 from tqdm import tqdm
+import re
 
-@profile
 def answer_questions():
     count = 0
     meme = 0
@@ -163,29 +152,30 @@ def answer_questions():
     current_time = time.strftime("%m%d-%H%M%S")
 
     for q in tqdm(questions, total=len(questions), desc="Answering questions...", unit="question"):
-        base_prompt = "Respond ONLY with the number corresponding to the correct option (1, 2, 3, or 4). Use only one token for your answer."
-        prompt = f"{base_prompt} {q['question']}"
+        base_prompt = "You are an AI assistant. Your task is to provide the correct answer to the following question by outputting only the number (1, 2, 3, or 4) corresponding to the correct option. Do not include any additional text in your response."
+        prompt = f"{base_prompt}\n{q['question']}".strip()
         encoding = tokenizer(prompt, return_tensors="pt").to(device)
-        
         answer = ""
-        for _ in range(3):  # Try up to 3 times to get a valid answer
+        generated_unpreprocessed_sequence = ""
+        for _ in range(3):  # TODO : sei qui , il modello genera risposte a caso
             with torch.inference_mode():
                 outputs = model.generate(
                     input_ids=encoding.input_ids,
                     attention_mask=encoding.attention_mask,
                     generation_config=generation_config,
                 )
-            answer = tokenizer.decode(outputs[0], skip_special_tokens=True).strip().lower()
-            # extract "answer : 1, 2, 3, 4" from the generated text
-            answer = answer.lower().split("answer :")[-1].strip()
-            answer = answer.split("\n")[-1]  # Prendi l'ultima riga nel caso ci siano più righe
-            print("Answer: ",answer)
+            generated_tokens = outputs[0][len(encoding.input_ids[0]):]
+            generated_unpreprocessed_sequence = tokenizer.decode(generated_tokens, skip_special_tokens=True).strip().lower()
+            # extract the first number to appear in the answer
+            match = re.search(r'\b[1-4]\b', generated_unpreprocessed_sequence)
+            answer = match.group(0) if match else "" # first number found or empty string
+            # print("\nAnswer: ",answer)
             if len(answer) == 1 and answer in "1234":
                 break  # Valid answer format
 
         # write question and answer to a file
         with open(f"quiz/runs/quiz_answers_{current_time}.txt", "a", encoding="utf-8") as f:
-            f.write(f"Prompt: {prompt}\nAnswer: {answer}\n\n")
+            f.write(f"Question: {q['question']}\nAnswer: {answer}\nCorrect answer:{q['correct']}\nGenerated unpreprocessed sequence: {generated_unpreprocessed_sequence}\n--------------------------------------------------------------------\n\n")
 
         if len(answer) != 1 or answer not in "1234":
             error += 1
@@ -210,16 +200,14 @@ def answer_questions():
 
 count = 0
 meme = 0
-iterations = 1
+iterations = 10
 
 for i in range(iterations):
     count_i, meme_i = answer_questions()
     count += count_i
     meme += meme_i
-    print(f"{i}) Medium score: {count/iterations}")
-    print(f"{i}) Medium meme score: {meme/iterations}")
+    print(f"Epoch : {i}) Medium score: {count}\tMedium meme score: {meme}")
 
 # print medium score
-print("-------------------------------------------")
-print(f"Medium score: {count/iterations}")
-print(f"Medium meme score: {meme/iterations}")
+print("----------------------------------------------------------------------------------")
+print(f"Medium score: {count/iterations*100}%\tMedium meme score: {meme/iterations*100}%")
