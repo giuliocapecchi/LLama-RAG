@@ -140,7 +140,8 @@ def generate_response(question: str) -> str:
             attention_mask=encoding.attention_mask,
             generation_config=generation_config,
         )
-    response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    generated_tokens = outputs[0][len(encoding.input_ids[0]):]
+    response = tokenizer.decode(generated_tokens, skip_special_tokens=True).strip().lower()
 
     assistant_start = "<assistant>:"
     response_start = response.find(assistant_start)
