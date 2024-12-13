@@ -7,3 +7,5 @@
 ir
 kill_tensorboard.py
 /quiz/runs
+/quiz/runs_finetunedmodel
+runs_basemodel
