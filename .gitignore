@@ -10,3 +10,4 @@ kill_tensorboard.py
 /quiz/runs_finetunedmodel
 runs_basemodel
 /hotpotqa
+/chroma_db
