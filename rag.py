@@ -70,20 +70,6 @@ for doc in texts:
 # Aggrega i documenti corti
 texts = aggregate_short_documents(texts)
 
-# Aggiungi un documento specifico alla lista dei testi
-specific_document_content = """
-Heap's law formula is given by:
-
-V = k * (n^β)
-
-where:
-- V is the vocabulary size
-- n is the number of words in the text
-- k and β are free parameters determined empirically
-"""
-specific_document = Document(page_content=preprocess_text(specific_document_content))
-texts.append(specific_document)
-
 # Create embeddings
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
