@@ -11,3 +11,6 @@ kill_tensorboard.py
 runs_basemodel
 /hotpotqa
 /chroma_db
+/embeddings
+*.pdf
+00-simple-local-rag.ipynb

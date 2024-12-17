@@ -1,5 +1,4 @@
 import os
-import json
 import torch
 from huggingface_hub import login
 from dotenv import load_dotenv
@@ -18,7 +17,6 @@ from tqdm import tqdm
 import re
 import gradio as gr
 from unidecode import unidecode
-from langchain.schema import Document
 
 # ------------------------------------------------------------------------- #
 
@@ -71,7 +69,7 @@ for doc in texts:
 texts = aggregate_short_documents(texts)
 
 # Create embeddings
-embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+embeddings = HuggingFaceEmbeddings(model_name="jxm/cde-small-v1")
 
 # Create a vector store
 db = Chroma.from_documents(texts, embeddings)
@@ -126,7 +124,7 @@ model.to(device)
 # ------------------------------------------------------------------------- #
 
 # Initialize the sentence-transformers model
-embedder_model_name = "sentence-transformers/all-MiniLM-L6-v2"
+embedder_model_name = "jxm/cde-small-v1"
 embedder_model = SentenceTransformer(embedder_model_name)
 
 def embedder(chunk):
