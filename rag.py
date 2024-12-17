@@ -70,6 +70,7 @@ texts = aggregate_short_documents(texts)
 
 # Create embeddings
 embeddings = HuggingFaceEmbeddings(model_name="jxm/cde-small-v1")
+# model_name="sentence-transformers/all-MiniLM-L6-v2"
 
 # Create a vector store
 db = Chroma.from_documents(texts, embeddings)
