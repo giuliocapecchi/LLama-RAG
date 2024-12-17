@@ -14,3 +14,4 @@ runs_basemodel
 /embeddings
 *.pdf
 00-simple-local-rag.ipynb
+/vector_store
