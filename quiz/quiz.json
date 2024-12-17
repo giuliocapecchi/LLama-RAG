@@ -780,7 +780,7 @@
         "question_id": 65
     },
     {
-        "question": "Which of the following metrics is used to measure overlap between two *1/1 sets?",
+        "question": "Which of the following metrics is used to measure overlap between two sets?",
         "answers": [
             "Jaccard Coefficient",
             "Precision",
