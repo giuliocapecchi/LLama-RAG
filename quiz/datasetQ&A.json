@@ -1,0 +1,909 @@
+{
+    "questions": [
+        {
+            "question": "What is the difference between Boolean retrieval and ranked retrieval?",
+            "answer": "Boolean retrieval returns all documents that match a query using AND, OR, or NOT operators and is suitable for small/medium collections. Ranked retrieval, used for large collections, orders documents by their relevance to the query based on a similarity function and returns only the top results."
+        },
+        {
+            "question": "What are the advantages of the Term-at-a-Time (TAAT) query processing method?",
+            "answer": "TAAT is simple and cache-friendly, processing one query term at a time. However, it requires significant memory to store partial scores for all documents."
+        },
+        {
+            "question": "Why is Document-at-a-Time (DAAT) retrieval preferred in commercial search engines?",
+            "answer": "DAAT uses a smaller memory footprint than TAAT, supports Boolean and phrasal queries, and processes all query terms in parallel to fully evaluate a document. These attributes make it efficient and practical for large-scale systems."
+        },
+        {
+            "question": "What is the purpose of caching in query processing?",
+            "answer": "Caching improves effectiveness by storing results of popular queries and common inverted lists, reducing the need to recompute results for recurring queries and speeding up the response for unique queries."
+        },
+        {
+            "question": "What is Heap's Law, and what does it predict?",
+            "answer": "Heap's Law describes the growth of the term vocabulary in a collection. It states that the vocabulary size (M) grows as a function of the total number of tokens (T) in the collection, typically following the formula ( M = kT^b ), where ( k ) is a constant and ( b  ) is usually less than 0.5."
+        },
+
+        {
+            "question": "What is the purpose of a ranking function in information retrieval?",
+            "answer": "A ranking function, also known as a scoring function, assigns a real number to every query-document pair to measure how well the document matches the query. Documents are then ordered by the decreasing value of the ranking function to identify the most relevant ones."
+        },
+        {
+            "question": "Why is the Jaccard coefficient not ideal for query-document matching?",
+            "answer": "The Jaccard coefficient does not account for term frequency, informativeness of rare terms, or document length, which are critical factors for effective query-document matching."
+        },
+        {
+            "question": "What is the 'bag of words' model?",
+            "answer": "The 'bag of words' model represents text as a vector of term frequencies without considering the order of words in the document. For example, 'John is quicker than Mary' and 'Mary is quicker than John' have the same vector representation."
+        },
+        {
+            "question": "How does inverse document frequency (IDF) improve term weighting?",
+            "answer": "IDF gives higher weight to rare terms, as they are more likely to be informative and relevant. It is calculated as the logarithm of the total number of documents divided by the number of documents containing the term."
+        },
+        {
+            "question": "Why is cosine similarity preferred over Euclidean distance in vector space models?",
+            "answer": "Cosine similarity normalizes vector lengths, making it effective for comparing documents of different lengths. It ranks documents by the angle between the query and document vectors, ensuring identical content yields maximum similarity regardless of vector magnitude."
+        },
+        {
+            "question": "What is the difference between full-text indexing and keyword indexing?",
+            "answer": "Full-text indexing indexes any string between two separating symbols, while keyword indexing focuses on indexing only the most important terms in documents or from a predefined list."
+        },
+        {
+            "question": "What is phrase indexing, and how does it differ from single-term indexing?",
+            "answer": "Phrase indexing involves building inverted lists for common phrases like 'New York City' or indexing n-grams, while single-term indexing creates inverted lists for individual terms. Phrase indexing can also restrict phrases to appear within a specific distance, such as five words."
+        },
+        {
+            "question": "What are the typical components of a posting in an inverted index?",
+            "answer": "A posting can include: (1) just the document ID (docid), used in Boolean retrieval; (2) docid and term frequency for ranked retrieval; (3) docid and impact score in production systems; or (4) docid, term frequency, and a list of positions, with positions often stored separately."
+        },
+        {
+            "question": "What are the three main structures needed to build an inverted index?",
+            "answer": "The three main structures are: (1) the inverted index, with one list per term; (2) a lexicon that stores information about terms, such as posting list locations and document frequencies; and (3) a document index, containing metadata like URLs, document sizes, and pagerank."
+        },
+        {
+            "question": "How is an inverted index typically stored for efficient retrieval?",
+            "answer": "An inverted index is stored on disk or in memory in compressed form. The postings are formatted to separate docids and frequencies (e.g., 'd,d,d,f,f,f') rather than interleaving them (e.g., 'd,f,d,f'). Multiple inverted indexes may be used, each covering a constant number of documents."
+        },
+        
+        {
+            "question": "What is an inverted index?",
+            "answer": "An inverted index is a data structure mapping terms to their locations in documents, facilitating efficient search."
+        },
+        {
+            "question": "What components make up an inverted index?",
+            "answer": "An inverted index includes a dictionary, posting lists, and document identifiers (docids)."
+        },
+        {
+            "question": "How does a term-document incidence matrix work?",
+            "answer": "It uses binary vectors to indicate whether a term appears in a document, enabling query operations like AND, OR, and NOT."
+        },
+        {
+            "question": "What is the advantage of storing positions in posting lists?",
+            "answer": "Storing positions enables ranking documents by relevance and allows proximity and phrase matching."
+        },
+        {
+        "question": "What are the three main data structures in an index?",
+        "answer": "An index typically contains a lexicon, a document index, and an inverted index with term-document statistics."
+        },
+        {
+            "question": "What is the primary goal of information retrieval?",
+            "answer": "The primary goal is to retrieve relevant information from unstructured data sources efficiently and effectively."
+        },
+        {
+            "question": "How does information retrieval differ from databases?",
+            "answer": "IR deals with unstructured data and ranked results, while databases handle structured data with exact matches."
+        },
+        {
+            "question": "What is a heuristic in information retrieval?",
+            "answer": "A heuristic guesses a close match for a query since exact answers are often unknown in IR."
+        },
+        {
+            "question": "What defines a document as relevant in IR?",
+            "answer": "Relevance is subjective and based on how well the document meets the user's information need."
+        },
+        {
+            "question": "What are some types of information retrieval tasks?",
+            "answer": "Tasks include ad hoc search, known item search, answer seeking, and decision making."
+        },
+
+        {
+            "question": "What is tokenisation in text processing?",
+            "answer": "Tokenisation is the task of segmenting documents into words or meaningful semantic units."
+        },
+        {
+            "question": "What is the difference between a token and a type?",
+            "answer": "A token is an instance of a character sequence, while a type is the class of all tokens with the same sequence."
+        },
+        {
+            "question": "What is the purpose of word normalisation?",
+            "answer": "Word normalisation standardises words by applying techniques like case folding and lemmatisation."
+        },
+        {
+            "question": "What is the Porter Stemmer used for?",
+            "answer": "The Porter Stemmer is an algorithm for reducing words to their stems by applying rewrite rules in phases."
+        },
+        {
+            "question": "What are stop words, and why are they removed?",
+            "answer": "Stop words are common words like 'the' and 'and,' removed to reduce indexing size and improve retrieval efficiency."
+        },
+
+        {
+            "question": "What is ASCII encoding?",
+            "answer": "ASCII encoding maps characters to 7-bit integers, representing 94 printing characters, 33 control characters, and space."
+        },
+        {
+            "question": "What is Unicode?",
+            "answer": "Unicode defines a codespace for almost all known languages, assigning characters unique code points from U+0000 to U+10FFFF."
+        },
+        {
+            "question": "What is the difference between Unicode and UTF-8?",
+            "answer": "Unicode assigns code points to characters, while UTF-8 is an encoding scheme that represents Unicode characters as sequences of 1 to 6 bytes."
+        },
+        {
+            "question": "How does UTF-8 handle ASCII characters?",
+            "answer": "In UTF-8, all ASCII characters are encoded within the 7 least significant bits of a byte, with the most significant bit as 0."
+        },
+        {
+            "question": "What are the steps to convert a Unicode code point to UTF-8?",
+            "answer": "Determine the number of bytes, copy bits into the sequence from least to most significant, and add leading zeros as required."
+        },
+        {
+            "question": "What is learning to rank in information retrieval?",
+            "answer": "Learning to rank applies machine learning to weight and rank retrieval features for search queries."
+        },
+        {
+            "question": "What are the three types of learning-to-rank approaches?",
+            "answer": "The approaches are point-wise, pair-wise, and list-wise, differing in how they evaluate and rank documents."
+        },
+        {
+            "question": "What is the role of click-through data in learning to rank?",
+            "answer": "Click-through data provides training datasets to facilitate the deployment of learning-based ranking models."
+        },
+        {
+            "question": "What are the main types of ranking features in search engines?",
+            "answer": "Features include query-document features, query-independent features, and query-only features."
+        },
+        {
+            "question": "Why are tree models like LambdaMART effective in search ranking?",
+            "answer": "Tree models customise branches for specific queries, making them more effective than linear models for ranking."
+        },
+        {
+            "question": "What is relevance feedback in information retrieval?",
+            "answer": "Relevance feedback allows users to mark documents as relevant or non-relevant to refine search queries and improve results."
+        },
+        {
+            "question": "What is pseudo-relevance feedback?",
+            "answer": "Pseudo-relevance feedback assumes top-ranked documents are relevant, reformulating the query without explicit user input."
+        },
+        {
+            "question": "What is the Rocchio algorithm?",
+            "answer": "The Rocchio algorithm adjusts queries by moving them closer to relevant documents and away from non-relevant ones in vector space."
+        },
+        {
+            "question": "What is query expansion?",
+            "answer": "Query expansion adds terms to the original query, sourced from relevant documents, thesauri, or co-occurrence analysis."
+        },
+        {
+            "question": "What is query drift in pseudo-relevance feedback?",
+            "answer": "Query drift occurs when feedback incorporates irrelevant terms, leading to reduced retrieval accuracy."
+        },
+        {
+            "question": "What is dynamic pruning in query processing?",
+            "answer": "Dynamic pruning skips scoring documents unlikely to appear in the top-ranked results, improving efficiency."
+        },
+        {
+            "question": "What is the purpose of caching in search systems?",
+            "answer": "Caching stores answers to past queries or term posting lists to bypass scoring for repeated or similar queries."
+        },
+        {
+            "question": "What is the MaxScore strategy?",
+            "answer": "The MaxScore strategy terminates scoring early for documents that cannot enter the top-ranked results."
+        },
+        {
+            "question": "What is static pruning in search indexing?",
+            "answer": "Static pruning removes less important data during or after indexing to speed up retrieval while maintaining top result quality."
+        },
+        {
+            "question": "How does the WAND strategy optimize query processing?",
+            "answer": "WAND uses pivot terms and approximate scores to skip documents with scores below a threshold, reducing computation."
+        },
+        {
+            "question": "What is the Probabilistic Relevance Model (PRP)?",
+            "answer": "PRP estimates the probability that a document is relevant to a query and ranks documents by decreasing probabilities."
+        },
+        {
+            "question": "What is the Binary Independence Model (BIM)?",
+            "answer": "BIM assumes binary relevance, independent terms, and uses odds to estimate document relevance."
+        },
+        {
+            "question": "What is the BM25 ranking function?",
+            "answer": "BM25 ranks documents using a term frequency and length normalization component to compute relevance."
+        },
+        {
+            "question": "What is the purpose of document length normalization?",
+            "answer": "It adjusts term frequency based on document length to account for verbosity or larger scope in longer documents."
+        },
+        {
+            "question": "How does BM25F improve ranking with fields?",
+            "answer": "BM25F combines term frequencies across fields using field-specific weights and parameters for more accurate ranking."
+        },
+        {
+            "question": "What is the Probability Ranking Principle (PRP)?",
+            "answer": "PRP states that ranking documents by decreasing probability of relevance maximizes the system's effectiveness."
+        },
+        {
+            "question": "What is the goal of ranked retrieval?",
+            "answer": "Ranked retrieval orders documents by usefulness, presenting the most relevant ones first."
+        },
+        {
+            "question": "What assumptions does the PRP make?",
+            "answer": "PRP assumes independent queries, users, and documents, with relevance judged for each query-document pair."
+        },
+        {
+            "question": "Why are probabilities used in information retrieval?",
+            "answer": "Probabilities quantify uncertainty in understanding user needs and document relevance."
+        },
+        {
+            "question": "What is a relevance judgment?",
+            "answer": "A relevance judgment is a binary evaluation of whether a document satisfies the user's information need."
+        },
+        {
+            "question": "What is a sample space in probability?",
+            "answer": "A sample space is the set of all possible outcomes of an experiment."
+        },
+        {
+            "question": "What is conditional probability?",
+            "answer": "Conditional probability is the probability of an event given that another event has occurred."
+        },
+        {
+            "question": "What is the expected value of a random variable?",
+            "answer": "The expected value is the arithmetic mean of a large number of independent realizations of the random variable."
+        },
+        {
+            "question": "What is a Bernoulli distribution?",
+            "answer": "A Bernoulli distribution models a single binary random variable controlled by a parameter π for success probability."
+        },
+        {
+            "question": "What is a Gaussian mixture model?",
+            "answer": "A Gaussian mixture model combines multiple Gaussian distributions, each with its own mean and variance, weighted by a discrete distribution."
+        },
+        
+        {
+            "question": "How is Precision at a given cutoff k (Pk) calculated?",
+            "answer": "By dividing the number of relevant documents retrieved within the top k by k."
+        },
+        {
+            "question": "What does the Precision-Recall curve represent?",
+            "answer": "It shows the trade-off between precision and recall at different cutoffs, highlighting the effectiveness of a retrieval system."
+        },
+        {
+            "question": "What does Mean Average Precision (MAP) indicate?",
+            "answer": "It is the arithmetic mean of precisions calculated at the cutoffs of each relevant document for a set of queries."
+        },
+        {
+            "question": "What is the meaning of Normalised Discounted Cumulative Gain (nDCG)?",
+            "answer": "It normalizes DCG by dividing its value by the maximum possible DCG, allowing fairer comparisons between systems."
+        },
+        {
+            "question": "What is the role of the parameter p in Rank-Biased Precision (RBP)?",
+            "answer": "It represents the user's persistence, i.e., the probability of continuing to examine subsequent documents."
+        },
+        {
+            "question": "What are the essential elements for evaluating an IR system according to the Cranfield paradigm?",
+            "answer": "A benchmark document collection, a benchmark query suite, and relevance judgments for each document and query."
+        },
+        {
+            "question": "What types of relevance judgments can be used?",
+            "answer": "Binary judgments (relevant or not relevant) or graded judgments (with multiple levels of relevance)."
+        },
+        {
+            "question": "Why is the pooling technique important in evaluation?",
+            "answer": "It reduces the number of documents to be judged by combining the results of different systems and removing duplicates."
+        },
+        {
+            "question": "What is the meaning of precision and recall in IR?",
+            "answer": "Precision measures the proportion of retrieved documents that are relevant, while recall measures the proportion of relevant documents that were retrieved."
+        },
+        {
+            "question": "What is the purpose of trec_eval?",
+            "answer": "It is a standard tool for evaluating a retrieval run against a standard set of judged results."
+        },
+        {
+            "question": "What is the goal of a significance test?",
+            "answer": "To determine whether we can reject the null hypothesis in favor of the alternative hypothesis, such as establishing whether algorithm B is significantly better than algorithm A."
+        },
+        {
+            "question": "What is the difference between a one-tailed and a two-tailed test?",
+            "answer": "A one-tailed test checks whether one system is better than another, while a two-tailed test simply checks if there is a significant difference between the two systems."
+        },
+        {
+            "question": "How is the p-value calculated in a significance test?",
+            "answer": "The p-value is calculated using a test statistic and represents the probability of obtaining an extreme value, assuming the null hypothesis is true."
+        },
+        {
+            "question": "What does a p-value below 0.05 indicate?",
+            "answer": "That we can reject the null hypothesis with 95% confidence."
+        },
+        {
+            "question": "What is the advantage of increasing the number of queries in an experiment?",
+            "answer": "It increases the power of the test, making it more likely to correctly reject the null hypothesis."
+        },
+        {
+            "question": "What is the purpose of an inverted index?",
+            "answer": "An inverted index allows efficient retrieval of documents containing specific terms by mapping each term to its occurrences in the document collection."
+        },
+        {
+            "question": "What are the key components of an inverted index?",
+            "answer": "The key components are a lexicon for term metadata, a document index for document metadata, and the actual inverted lists mapping terms to documents."
+        },
+        {
+            "question": "What is the 'bag of words' model?",
+            "answer": "The 'bag of words' model represents text as a collection of terms and their frequencies without considering the order of the terms."
+        },
+        {
+            "question": "How does phrase indexing differ from single-term indexing?",
+            "answer": "Phrase indexing builds inverted lists for phrases, such as 'New York City,' whereas single-term indexing creates lists for individual terms."
+        },
+        {
+            "question": "What is Heap's Law in information retrieval?",
+            "answer": "Heap's Law predicts the growth of vocabulary size as the collection size increases, typically following the formula M = kT^b, where M is vocabulary size and T is the number of tokens."
+        },
+        {
+            "question": "What does Zipf's Law state about term frequencies?",
+            "answer": "Zipf's Law states that the frequency of a term is inversely proportional to its rank in the frequency table. The most frequent term is much more common than the second, and so on."
+        },
+        {
+            "question": "What are the advantages of term-at-a-time (TAAT) query processing?",
+            "answer": "TAAT is simple and cache-friendly, allowing the processing of query terms sequentially, which can be advantageous for certain retrieval tasks."
+        },
+        {
+            "question": "What are the limitations of TAAT query processing?",
+            "answer": "TAAT requires significant memory for partial scores and is less efficient for Boolean or phrasal queries."
+        },
+        {
+            "question": "Why is document-at-a-time (DAAT) retrieval often preferred?",
+            "answer": "DAAT has a smaller memory footprint, supports Boolean and phrasal queries, and processes documents collectively for all query terms."
+        },
+        {
+            "question": "What are the main differences between Boolean and ranked retrieval?",
+            "answer": "Boolean retrieval returns all documents matching a query, suitable for expert users, while ranked retrieval orders documents by relevance, catering to most users."
+        },
+        {
+            "question": "What is the purpose of the ranking function in ranked retrieval?",
+            "answer": "The ranking function assigns a score to each query-document pair, measuring their relevance and ordering documents accordingly."
+        },
+        {
+            "question": "How does cosine similarity measure document-query proximity?",
+            "answer": "Cosine similarity computes the cosine of the angle between the query and document vectors, normalizing for vector length to ensure meaningful comparison regardless of size."
+        },
+        {
+            "question": "What is TF-IDF, and why is it useful?",
+            "answer": "TF-IDF is a weighting scheme that combines term frequency (TF) and inverse document frequency (IDF) to assign importance to terms, emphasizing rare but relevant terms."
+        },
+        {
+            "question": "What are stop words, and how are they handled in indexing?",
+            "answer": "Stop words are common terms (e.g., 'the,' 'is') with little semantic value. They are often removed during indexing to reduce storage and improve efficiency."
+        },
+        {
+            "question": "What is distributed query processing, and what are its two main approaches?",
+            "answer": "Distributed query processing divides query evaluation across multiple servers. The two main approaches are document distribution, where each server indexes a subset of documents, and term distribution, where inverted lists are distributed across servers."
+        },
+        {
+            "question": "What are the challenges of term distribution in distributed indexing?",
+            "answer": "Term distribution can lead to load balancing issues, as queries with rare terms may heavily load specific servers."
+        },
+        {
+            "question": "Why is compression important for inverted indexes?",
+            "answer": "Compression reduces disk space requirements and speeds up data retrieval by minimizing the amount of data read from disk."
+        },
+        {
+            "question": "What is the role of caching in query processing?",
+            "answer": "Caching stores results of popular queries or common inverted lists to speed up response times and reduce redundant computations."
+        },
+        {
+            "question": "What is the purpose of a lexicon in an inverted index?",
+            "answer": "The lexicon stores metadata about terms, such as posting list locations and term frequencies, facilitating efficient lookup and access."
+        },
+        {
+            "question": "What is a document index, and what information does it typically store?",
+            "answer": "A document index maps document IDs to metadata like URLs, document sizes, and pagerank, supporting efficient access and ranking."
+        },
+        {
+            "question": "What are impact scores in postings, and where are they used?",
+            "answer": "Impact scores represent the importance of a term in a document, often used in production systems for efficient ranked retrieval."
+        },
+        {
+            "question": "What is the difference between n-gram indexing and term-pair indexing?",
+            "answer": "N-gram indexing builds inverted lists for sequences of n consecutive terms, while term-pair indexing creates lists for pairs of terms that co-occur within a specified distance."
+        },
+        {
+            "question": "How does the vector space model represent documents and queries?",
+            "answer": "In the vector space model, documents and queries are represented as vectors in a high-dimensional space, with dimensions corresponding to terms."
+        },
+        {
+            "question": "What are the benefits of storing postings as (docid, frequency) pairs?",
+            "answer": "Storing postings as (docid, frequency) pairs simplifies ranked retrieval and allows efficient computation of term weights and relevance scores."
+        },
+        {
+            "question": "Why is document length normalization important in retrieval?",
+            "answer": "Document length normalization ensures that documents of varying lengths are fairly compared, preventing longer documents from dominating scores."
+        },
+        {
+            "question": "What is the role of a priority queue in TAAT and DAAT algorithms?",
+            "answer": "The priority queue stores and ranks documents by their relevance scores, ensuring efficient retrieval of the top-k results."
+        },
+        {
+            "question": "What is the difference between the terms 'collection frequency' and 'document frequency'?",
+            "answer": "Collection frequency counts the total occurrences of a term in a collection, while document frequency counts the number of documents containing the term."
+        },
+        {
+            "question": "What is the impact of tokenization on indexing?",
+            "answer": "Tokenization determines how text is divided into terms, directly influencing the granularity and effectiveness of the index."
+        },
+        {
+            "question": "What is the purpose of stemming in information retrieval?",
+            "answer": "Stemming reduces words to their root forms, helping to group variants of a term (e.g., 'run' and 'running') under a single index entry."
+        },
+
+        {
+            "question": "What is the difference between precision and recall in information retrieval?",
+            "answer": "Precision measures the proportion of retrieved documents that are relevant, while recall measures the proportion of relevant documents that are retrieved."
+        },
+        {
+            "question": "What is the role of TF-IDF in ranking documents?",
+            "answer": "TF-IDF balances term frequency and inverse document frequency to rank documents by their relevance to a query."
+        },
+        {
+            "question": "What is stemming in text processing?",
+            "answer": "Stemming reduces words to their base or root form by removing suffixes and other affixes."
+        },
+        {
+            "question": "What is the purpose of stopword removal in text processing?",
+            "answer": "Stopword removal eliminates common words like 'the' or 'and' to improve efficiency and focus on meaningful terms."
+        },
+        {
+            "question": "What is the main goal of pseudo-relevance feedback?",
+            "answer": "Pseudo-relevance feedback assumes initial top-ranked documents are relevant and refines queries to improve search results."
+        },
+        {
+            "question": "What is the difference between MaxScore and WAND strategies?",
+            "answer": "MaxScore skips scoring non-essential documents, while WAND uses pivot terms to skip documents below the threshold."
+        },
+        {
+            "question": "What is the significance of term frequency normalization in BM25?",
+            "answer": "Normalization adjusts term frequency by document length to ensure fair relevance scoring across documents of different lengths."
+        },
+        {
+            "question": "What is the role of dynamic pruning in query processing?",
+            "answer": "Dynamic pruning accelerates query processing by ignoring documents unlikely to rank in the top results."
+        },
+        {
+            "question": "What is the purpose of the Binary Independence Model (BIM)?",
+            "answer": "BIM assumes independence between terms and uses odds to rank documents based on query-term relevance."
+        },
+        {
+            "question": "What is a multinomial distribution in generative models?",
+            "answer": "A multinomial distribution models the probability of term occurrences in documents, assuming independence among terms."
+        },
+        {
+            "question": "What is the role of the Probability Ranking Principle (PRP)?",
+            "answer": "PRP ranks documents by decreasing probability of relevance to maximize retrieval effectiveness."
+        },
+        {
+            "question": "What is a partition of a sample space in probability?",
+            "answer": "A partition divides the sample space into mutually exclusive and collectively exhaustive subsets."
+        },
+        {
+            "question": "What are permutations and combinations?",
+            "answer": "Permutations count arrangements of items where order matters, while combinations count selections where order does not matter."
+        },
+        {
+            "question": "What is a cumulative distribution function (CDF)?",
+            "answer": "A CDF represents the probability that a random variable takes a value less than or equal to a given value."
+        },
+        {
+            "question": "What is the relationship between a probability density function (PDF) and CDF?",
+            "answer": "A PDF is the derivative of the CDF, representing the probability density at a specific point."
+        },
+        {
+            "question": "What is document length normalization in IR systems?",
+            "answer": "Document length normalization adjusts term weights to account for the verbosity or scope of documents."
+        },
+        {
+            "question": "What is query expansion in information retrieval?",
+            "answer": "Query expansion adds related terms to the query to improve recall and relevance."
+        },
+        {
+            "question": "What is the Rocchio algorithm's purpose in relevance feedback?",
+            "answer": "The Rocchio algorithm adjusts queries by emphasizing terms from relevant documents and de-emphasizing non-relevant terms."
+        },
+        {
+            "question": "What is the importance of click-through data in learning to rank?",
+            "answer": "Click-through data provides implicit user feedback to train ranking algorithms."
+        },
+        {
+            "question": "What is the eliteness model in probabilistic IR?",
+            "answer": "The eliteness model assumes terms are 'elite' if they represent the document's main topics, influencing relevance."
+        },
+            
+        {
+            "question": "What is term co-occurrence in query expansion?",
+            "answer": "Term co-occurrence analyzes how frequently terms appear together in documents to suggest related query terms."
+        },
+        {
+            "question": "What is a Gaussian distribution, and where is it used?",
+            "answer": "A Gaussian distribution, or normal distribution, models data with a symmetric bell-shaped curve, commonly used in statistical analysis."
+        },
+        {
+            "question": "What is the difference between implicit and explicit user feedback in IR?",
+            "answer": "Explicit feedback involves user-provided relevance judgments, while implicit feedback is derived from user actions like clicks."
+        },
+        {
+            "question": "What is the purpose of a priority queue in query processing?",
+            "answer": "A priority queue stores top-ranked document scores during query processing to manage ranking thresholds."
+        },
+        {
+            "question": "What is the role of a thesaurus in query expansion?",
+            "answer": "A thesaurus provides synonyms and related terms to expand queries and improve retrieval recall."
+        },
+        {
+            "question": "What is query drift in relevance feedback?",
+            "answer": "Query drift occurs when added terms reduce query effectiveness by shifting focus away from the original intent."
+        },
+        {
+            "question": "What is the main challenge of static pruning in search indexing?",
+            "answer": "The challenge is removing less useful data without negatively impacting the quality of top search results."
+        },
+        {
+            "question": "What is the difference between a discrete and a continuous random variable?",
+            "answer": "A discrete random variable takes specific values, while a continuous random variable takes any value in a range."
+        },
+        {
+            "question": "What is the chain rule in probability?",
+            "answer": "The chain rule calculates joint probabilities by multiplying conditional probabilities sequentially."
+        },
+        {
+            "question": "What is the difference between unigram and bigram models in IR?",
+            "answer": "Unigram models consider single terms, while bigram models consider pairs of consecutive terms for context."
+        },
+        {
+            "question": "What is a document ranking cascade?",
+            "answer": "A ranking cascade processes documents in stages, progressively refining the ranking at each stage."
+        },
+        {
+            "question": "What is the role of the term frequency-inverse document frequency (TF-IDF) weighting scheme?",
+            "answer": "TF-IDF balances term frequency with its rarity across documents to rank documents by relevance."
+        },
+        {
+            "question": "What is the importance of sampling in probabilistic IR models?",
+            "answer": "Sampling estimates probabilities and term weights when full relevance judgments are unavailable."
+        },
+        {
+            "question": "How does a mixture model differ from a single distribution?",
+            "answer": "A mixture model combines multiple distributions to represent complex data with multiple subpopulations."
+        },
+        {
+            "question": "What is document re-ranking in IR systems?",
+            "answer": "Document re-ranking refines an initial ranking using additional features or learning-to-rank algorithms."
+        },
+        {
+            "question": "What is a retrieval status value (RSV)?",
+            "answer": "RSV represents the relevance score of a document for a query, used for ranking in IR models."
+        },
+        {
+            "question": "What is the role of smoothing in probabilistic models?",
+            "answer": "Smoothing avoids zero probabilities by adjusting estimates based on observed and unobserved data."
+        },
+        {
+            "question": "What is the difference between BM11 and BM25 ranking functions?",
+            "answer": "BM11 uses partial length normalization, while BM25 incorporates full length normalization and additional weighting."
+        },
+        {
+            "question": "What is query-document similarity in IR?",
+            "answer": "Query-document similarity measures how closely a document's content matches the query's intent and terms."
+        },
+        {
+            "question": "What is the purpose of a partition in Bayes' theorem?",
+            "answer": "A partition divides the sample space to calculate posterior probabilities using the law of total probability."
+        },
+        {
+            "question": "What is a posting list in an inverted index?",
+            "answer": "A posting list contains document identifiers where a specific term appears, enabling efficient search."
+        },
+        {
+            "question": "What is query likelihood in probabilistic IR models?",
+            "answer": "Query likelihood measures the probability of a query being generated from a document model."
+        },
+        {
+            "question": "What is the role of document priors in ranking?",
+            "answer": "Document priors represent pre-ranking probabilities based on document-specific factors like popularity or age."
+        },
+        {
+            "question": "What is the difference between boolean and ranked retrieval?",
+            "answer": "Boolean retrieval uses exact matches for queries, while ranked retrieval orders documents by relevance."
+        },
+        {
+            "question": "What is the purpose of term weighting in IR?",
+            "answer": "Term weighting quantifies the importance of terms in documents and queries to improve ranking accuracy."
+        },
+        {
+            "question": "What are the key components of an IR system?",
+            "answer": "Key components include indexing, querying, ranking, and relevance feedback mechanisms."
+        },
+        {
+            "question": "What is the purpose of the independence assumption in BIM?",
+            "answer": "The independence assumption simplifies probability calculations by treating terms as independent within documents."
+        },
+        {
+            "question": "What is term frequency saturation in BM25?",
+            "answer": "Term frequency saturation prevents overly frequent terms from disproportionately affecting document scores."
+        },
+        {
+            "question": "What is the significance of upper bounds in dynamic pruning?",
+            "answer": "Upper bounds estimate the maximum possible score for a document, enabling early pruning of irrelevant results."
+        },
+        {
+            "question": "What is the difference between precision at K and recall at K?",
+            "answer": "Precision at K measures the proportion of relevant documents in the top K results, while recall at K measures the proportion of all relevant documents retrieved within the top K results."
+        },
+        {
+            "question": "What is a pivot term in the WAND strategy?",
+            "answer": "A pivot term is the term with the highest contribution to the current score threshold in WAND processing."
+        },
+        {
+            "question": "What is the purpose of rank-preserving transformations in IR?",
+            "answer": "Rank-preserving transformations allow simplification of relevance scoring while maintaining the relative order of documents."
+        },
+        {
+            "question": "What is document eliteness in probabilistic models?",
+            "answer": "Document eliteness indicates whether a document is about the concept represented by a term."
+        },
+        {
+            "question": "What is the effect of verbosity on term frequency in IR?",
+            "answer": "Verbosity increases term frequency due to redundant content, requiring normalization to ensure fair scoring."
+        },
+        {
+            "question": "What is query specificity, and why is it important?",
+            "answer": "Query specificity reflects how narrow or focused a query is, affecting the precision and recall of results."
+        },
+        {
+            "question": "What is a rank fusion approach in IR?",
+            "answer": "Rank fusion combines rankings from multiple retrieval models to improve the overall effectiveness of results."
+        },
+        {
+            "question": "What is the purpose of latent semantic analysis in IR?",
+            "answer": "Latent semantic analysis uncovers hidden relationships between terms and documents to improve retrieval performance."
+        },
+        {
+            "question": "What is the purpose of field-based retrieval in IR?",
+            "answer": "Field-based retrieval scores different document fields (e.g., title, body) separately to account for their varying importance."
+        },
+        {
+            "question": "What is the difference between supervised and unsupervised learning-to-rank?",
+            "answer": "Supervised learning-to-rank uses labeled training data, while unsupervised approaches rely on inherent document-query structures."
+        },
+        {
+            "question": "What is the difference between probability mass and probability density?",
+            "answer": "Probability mass applies to discrete variables, while probability density applies to continuous variables."
+        },
+
+        {
+            "question": "What are the three main types of queries in web search?",
+            "answer": "Navigational, informational, and transactional queries."
+        },
+        {
+            "question": "What is the primary goal of navigational queries?",
+            "answer": "To reach a specific site or URL."
+        },
+        {
+            "question": "How do informational queries differ from transactional queries?",
+            "answer": "Informational queries aim to acquire information, while transactional queries seek websites for further interactions like shopping or downloading."
+        },
+        {
+            "question": "What percentage of web queries are navigational, informational, and transactional?",
+            "answer": "20% are navigational, 48% are informational, and 30% are transactional."
+        },
+        {
+            "question": "Why is it challenging to infer user intent from queries?",
+            "answer": "Queries are often short and lack context, making intent ambiguous."
+        },
+        {
+            "question": "How does the size of the web make search challenging?",
+            "answer": "With trillions of pages indexed, search engines face a massive big data problem in finding relevant results efficiently."
+        },
+        {
+            "question": "What are the key factors that influence web search from the user's perspective?",
+            "answer": "Relevance and speed of search results."
+        },
+        {
+            "question": "How does temporal dynamics affect web search?",
+            "answer": "Document relevance and user interactions change over time, such as during events or based on query volumes."
+        },
+        {
+            "question": "How often do popular web pages typically change?",
+            "answer": "Popular web pages change every 123 hours on average."
+        },
+        {
+            "question": "What is the URL Frontier in web crawling?",
+            "answer": "It is a queue data structure containing URLs to be crawled, prioritized based on importance."
+        },
+        {
+            "question": "Name three open-source web crawlers mentioned in the slides.",
+            "answer": "BUbiNG, Heritrix, and Scrapy."
+        },
+        {
+            "question": "What is the primary goal of PageRank?",
+            "answer": "To estimate the authority of a web page based on its popularity in a simulated random walk."
+        },
+        {
+            "question": "What is teleportation in the context of PageRank?",
+            "answer": "It is the process of allowing a random jump to any page to avoid dead ends in the PageRank algorithm."
+        },
+        {
+            "question": "What are the two main paradigms for scaling up distributed search?",
+            "answer": "Vertical scaling and horizontal scaling."
+        },
+        {
+            "question": "How does document partitioning work in distributed search?",
+            "answer": "Documents are distributed across servers, and each server processes queries on its assigned subset of documents."
+        },
+        {
+            "question": "What is the purpose of offline evaluation in web search?",
+            "answer": "To assess system performance using pre-collected queries and relevance judgments under fixed conditions."
+        },
+        {
+            "question": "What is interleaving in online evaluation?",
+            "answer": "It combines results from two ranking systems into a single list and observes user clicks to determine preference."
+        },
+        {
+            "question": "What is position bias in search engine evaluation?",
+            "answer": "Users are more likely to click on higher-ranked results regardless of relevance."
+        },
+        {
+            "question": "What role does the broker play in distributed search?",
+            "answer": "The broker distributes queries to multiple servers and merges their results into a unified response."
+        },
+        {
+            "question": "How does personalization improve search results?",
+            "answer": "By using user context, search history, and preferences to resolve ambiguities and prioritize relevant content."
+        },
+        {
+            "question": "What is anchor text, and why is it significant?",
+            "answer": "Anchor text describes the target page in hyperlinks, providing additional context for ranking."
+        },
+        {
+            "question": "What are resource selection techniques?",
+            "answer": "Methods like CORI and ReDDE predict which document subsets are most relevant to a query in distributed search."
+        },
+        {
+            "question": "What metrics are used in online evaluations such as A/B testing?",
+            "answer": "Metrics include Abandonment Rate, Mean Reciprocal Rank (MRR), and User Engagement (e.g., clicks per query)."
+        },
+        {
+            "question": "What is the main assumption of online evaluations in search engines?",
+            "answer": "Observable user behavior reflects relevance."
+        },
+        {
+            "question": "What is the biggest challenge of online evaluation?",
+            "answer": "It requires large-scale user data to address noisy behavior and interpret implicit feedback effectively."
+        },
+
+        {
+            "question": "What is the purpose of significance tests in ranking evaluations?",
+            "answer": "To determine whether a new ranking algorithm is statistically better than another baseline algorithm."
+        },
+        {
+            "question": "What is the null hypothesis in ranking evaluation significance tests?",
+            "answer": "The null hypothesis states that there is no difference between an algorithm and another one."
+        },
+        {
+            "question": "How does increasing the number of queries in an experiment affect the test?",
+            "answer": "It increases the power of the test, improving the likelihood of correctly rejecting the null hypothesis if it is false."
+        },
+        {
+            "question": "What is the role of the p-value in significance tests?",
+            "answer": "The p-value measures the probability of observing a test statistic as extreme as the one obtained if the null hypothesis were true."
+        },
+        {
+            "question": "What are common significance levels used in ranking evaluations?",
+            "answer": "Typical significance levels are 0.05 and 0.01."
+        },
+        {
+            "question": "What is a single-tailed test in the context of ranking evaluation?",
+            "answer": "A test to determine whether algorithm B is better than algorithm A."
+        },
+        {
+            "question": "What is the Wilcoxon Signed-rank Test used for in ranking evaluations?",
+            "answer": "It is a non-parametric test used to compare the effectiveness of two ranking systems when the data does not satisfy interval scale assumptions."
+        },
+        {
+            "question": "What does the t-test assume about the evaluation data?",
+            "answer": "The t-test assumes the data is measured on an interval scale, and the differences between values are significant."
+        },
+        {
+            "question": "How are test statistics used in significance testing?",
+            "answer": "Test statistics compare the effectiveness measures of two algorithms to determine if observed differences are statistically significant."
+        },
+        {
+            "question": "What is the difference between single-tailed and two-tailed tests?",
+            "answer": "A single-tailed test checks if one algorithm is better, while a two-tailed test checks if the algorithms are different."
+        },
+        {
+            "question": "What does Precision_k measure?",
+            "answer": "Precision_k measures the proportion of relevant documents among the top k retrieved documents."
+        },
+        {
+            "question": "What does Recall_k measure?",
+            "answer": "Recall_k measures the proportion of all relevant documents retrieved up to the k-th document."
+        },
+        {
+            "question": "Why is the Precision-Recall curve saw-toothed?",
+            "answer": "Because Precision values drop when a non-relevant document is retrieved, leading to multiple Precision values for the same Recall value."
+        },
+        {
+            "question": "How is Average Precision (AP) calculated?",
+            "answer": "AP is the arithmetic mean of Precision values at the rank positions of relevant documents."
+        },
+        {
+            "question": "What is Mean Average Precision (MAP)?",
+            "answer": "MAP is the average of Average Precision values across multiple queries."
+        },
+        {
+            "question": "What does the Area Under the Precision-Recall Curve (AUC) represent?",
+            "answer": "AUC summarizes the trade-off between Precision and Recall, indicating the overall retrieval effectiveness."
+        },
+        {
+            "question": "What is Discounted Cumulative Gain (DCG)?",
+            "answer": "DCG measures the usefulness of a document based on its rank and relevance, discounting the relevance score by the log of the rank."
+        },
+        {
+            "question": "How is Normalized DCG (nDCG) calculated?",
+            "answer": "nDCG is the ratio of DCG to the ideal DCG, providing a normalized score between 0 and 1."
+        },
+        {
+            "question": "What is Rank-Biased Precision (RBP)?",
+            "answer": "RBP calculates Precision using a probabilistic user model, where users stop browsing at a given rank with a specific probability."
+        },
+        {
+            "question": "How does RBP handle patient and impatient users?",
+            "answer": "RBP adjusts the persistence probability (p), with lower values for impatient users and higher values for patient users."
+        },
+        {
+            "question": "What is the primary measure of user satisfaction in IR?",
+            "answer": "The relevance of search results."
+        },
+        {
+            "question": "What are the two types of relevance judgments?",
+            "answer": "Binary (relevant or non-relevant) and graded (e.g., on a scale from 0 to 5)."
+        },
+        {
+            "question": "What is the Cranfield Paradigm?",
+            "answer": "A methodology for IR evaluation that uses test collections with predefined relevance judgments for comparability and reproducibility."
+        },
+        {
+            "question": "Why is pooling used in TREC evaluations?",
+            "answer": "To reduce the number of documents requiring relevance judgments by merging top-ranked documents from various systems."
+        },
+        {
+            "question": "What does a test collection consist of?",
+            "answer": "A set of documents, queries, and relevance judgments."
+        },
+        {
+            "question": "How does Precision differ from Recall?",
+            "answer": "Precision measures the proportion of relevant retrieved documents, while Recall measures the proportion of relevant documents retrieved."
+        },
+        {
+            "question": "What is the purpose of trec_eval?",
+            "answer": "It is a standard tool for evaluating IR systems using TREC test collections."
+        },
+        {
+            "question": "What is the pooling technique's main limitation?",
+            "answer": "It may produce incomplete relevance judgments as it does not evaluate all documents in a collection."
+        },
+        {
+            "question": "How are topics structured in test collections?",
+            "answer": "Topics include a title (query), description, and narrative to guide relevance assessments."
+        },
+        {
+            "question": "Why is exhaustively judging all documents impractical?",
+            "answer": "Because of the vast number of documents in modern collections, which makes comprehensive judgments time-consuming and costly."
+        }
+    ]
+}
