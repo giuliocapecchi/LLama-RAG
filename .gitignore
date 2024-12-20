@@ -15,3 +15,4 @@ runs_basemodel
 *.pdf
 00-simple-local-rag.ipynb
 /vector_store
+/old
