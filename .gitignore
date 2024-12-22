@@ -16,3 +16,4 @@ runs_basemodel
 00-simple-local-rag.ipynb
 /vector_store
 /old
+/chroma-collection
