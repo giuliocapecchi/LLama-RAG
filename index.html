@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RAG Model Query Interface</title>
+</head>
+<body>
+    <h1>RAG Model Query Interface</h1>
+    <form method="POST">
+        <label for="query">Ask a question:</label><br>
+        <textarea id="query" name="query" rows="4" cols="50" placeholder="Type your question here"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if query %}
+        <h2>Query:</h2>
+        <p>{{ query }}</p>
+        <h2>Answer:</h2>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>
