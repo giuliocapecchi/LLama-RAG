@@ -19,3 +19,5 @@ runs_basemodel
 /chroma-collection
 vector_store.zip
 elements.pkl
+/chunks
+*.pkl
