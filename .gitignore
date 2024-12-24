@@ -18,3 +18,4 @@ runs_basemodel
 /old
 /chroma-collection
 vector_store.zip
+elements.pkl
