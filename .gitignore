@@ -21,3 +21,4 @@ vector_store.zip
 elements.pkl
 /chunks
 *.pkl
+/nougat-output
