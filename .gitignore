@@ -22,3 +22,4 @@ elements.pkl
 /chunks
 *.pkl
 /nougat-output
+/evaluation/res
