@@ -23,3 +23,4 @@ elements.pkl
 *.pkl
 /nougat-output
 /evaluation/res
+/evaluation/RAG_quiz_runs
