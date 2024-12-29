@@ -8,7 +8,6 @@
             "It cannot handle queries with more than 10 terms"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 1
     },
     {
@@ -20,7 +19,6 @@
             "Document-at-a-time (DAAT) query processing"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 2
     },
     {
@@ -32,7 +30,6 @@
             "Machine learning cannot capture the user's implicit feedback"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 3
     },
     {
@@ -44,7 +41,6 @@
             "It ignores dead-end pages entirely"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 4
     },
     {
@@ -56,7 +52,6 @@
             "To reduce training data size for the model"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 5
     },
     {
@@ -68,7 +63,6 @@
             "The query expands with irrelevant terms, reducing precision"
         ],
         "correct": 4,
-        "category": 0,
         "question_id": 6
     },
     {
@@ -80,7 +74,6 @@
             "It overburdens a single server with too many documents"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 7
     },
     {
@@ -92,7 +85,6 @@
             "They assume every page has equal relevance"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 8
     },
     {
@@ -104,7 +96,6 @@
             "Query-only features"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 9
     },
     {
@@ -116,7 +107,6 @@
             "It reduces the rank of pages with few links"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 10
     },
     {
@@ -128,7 +118,6 @@
             "To manage network traffic between users and query servers"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 11
     },
     {
@@ -140,7 +129,6 @@
             "To ensure that only query-independent features are used"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 12
     },
     {
@@ -152,7 +140,6 @@
             "To ensure that all documents receive equal consideration"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 13
     },
     {
@@ -164,7 +151,6 @@
             "Both types of feedback tend to conflict and decrease retrieval accuracy"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 14
     },
     {
@@ -176,7 +162,6 @@
             "To adjust the ranking algorithm dynamically based on user interaction"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 15
     },
     {
@@ -188,7 +173,6 @@
             "By reducing the term weight of frequently occurring terms"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 16
     },
     {
@@ -200,7 +184,6 @@
             "The URL structure"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 17
     },
     {
@@ -212,7 +195,6 @@
             "To ensure that rare terms are given more weight during query processing"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 18
     },
     {
@@ -224,7 +206,6 @@
             "Class-wise"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 19
     },
     {
@@ -236,68 +217,7 @@
             "They are inefficient in terms of computational complexity"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 20
-    },
-    {
-        "question": "In Star Wars: Episode V - The Empire Strikes Back (1980), what is the name of the planet where Luke Skywalker trains with Yoda?",
-        "answers": [
-            "Endor",
-            "Tatooine",
-            "Hoth",
-            "Dagobah"
-        ],
-        "correct": 4,
-        "category": 1,
-        "question_id": 21
-    },
-    {
-        "question": "In Back to the Future (1985), what speed must the DeLorean reach to initiate time travel?",
-        "answers": [
-            "60 miles per hour",
-            "88 miles per hour",
-            "100 miles per hour",
-            "120 miles per hour"
-        ],
-        "correct": 2,
-        "category": 1,
-        "question_id": 22
-    },
-    {
-        "question": "In Indiana Jones and the Last Crusade (1989), what is the object that Indiana Jones seeks to recover?",
-        "answers": [
-            "The Ark of the Covenant",
-            "The Holy Grail",
-            "The Crystal Skull",
-            "The Staff of Ra"
-        ],
-        "correct": 2,
-        "category": 1,
-        "question_id": 23
-    },
-    {
-        "question": "In The Matrix (1999), what color pill does Neo take to learn the truth about the Matrix?",
-        "answers": [
-            "Blue",
-            "Red",
-            "Green",
-            "Yellow"
-        ],
-        "correct": 2,
-        "category": 1,
-        "question_id": 24
-    },
-    {
-        "question": "Which 1979 science fiction movie directed by Ridley Scott features the character Ellen Ripley?",
-        "answers": [
-            "Blade Runner",
-            "Alien",
-            "The Terminator",
-            "Dune"
-        ],
-        "correct": 2,
-        "category": 1,
-        "question_id": 25
     },
     {
         "question": "What is the function of a posting list in an inverted index?",
@@ -308,7 +228,6 @@
             "It orders documents alphabetically"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 26
     },
     {
@@ -320,7 +239,6 @@
             "Tokens with more than one meaning"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 27
     },
     {
@@ -332,7 +250,6 @@
             "An encoding standard"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 28
     },
     {
@@ -344,7 +261,6 @@
             "To rank documents based on their relevance to a query"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 29
     },
     {
@@ -356,7 +272,6 @@
             "Tokenizing multiword expressions"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 30
     },
     {
@@ -368,7 +283,6 @@
             "A table of contents"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 31
     },
     {
@@ -380,7 +294,6 @@
             "4 bytes only"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 32
     },
     {
@@ -392,7 +305,6 @@
             "A word with more than one meaning"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 33
     },
     {
@@ -404,7 +316,6 @@
             "Removing punctuation"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 34
     },
     {
@@ -416,7 +327,6 @@
             "256 to 1024"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 35
     },
     {
@@ -428,7 +338,6 @@
             "Handling large, pre-indexed collections"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 36
     },
     {
@@ -440,7 +349,6 @@
             "The Unicode Standard is a character encoding scheme."
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 37
     },
     {
@@ -452,7 +360,6 @@
             "To compress text files"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 38
     },
     {
@@ -464,7 +371,6 @@
             "Token Frequency-Indexed Data Factor"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 39
     },
     {
@@ -476,7 +382,6 @@
             "To encode characters in UTF-8"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 40
     },
     {
@@ -488,7 +393,6 @@
             "To compress large text files"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 41
     },
     {
@@ -500,7 +404,6 @@
             "To tokenize documents"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 42
     },
     {
@@ -512,7 +415,6 @@
             "Encoding text in UTF-8"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 43
     },
     {
@@ -524,7 +426,6 @@
             "Hamming Algorithm"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 44
     },
     {
@@ -536,7 +437,6 @@
             "To convert text into binary form"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 45
     },
     {
@@ -548,7 +448,6 @@
             "Term occurrences in different documents are dependent on each other"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 46
     },
     {
@@ -560,20 +459,7 @@
             "It can over-normalize the term weights in longer documents"
         ],
         "correct": 4,
-        "category": 0,
         "question_id": 47
-    },
-    {
-        "question": "Which of these comic book characters is NOT part of the DC Comics universe?",
-        "answers": [
-            "Wonder Woman",
-            "Green Lantern",
-            "Iron Man",
-            "The Flash"
-        ],
-        "correct": 3,
-        "category": 1,
-        "question_id": 48
     },
     {
         "question": "What is the goal of the Probability Ranking Principle (PRP) in information retrieval?",
@@ -584,7 +470,6 @@
             "To create a Boolean retrieval system"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 49
     },
     {
@@ -596,7 +481,6 @@
             "Vocabulary size becomes static over time"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 50
     },
     {
@@ -608,7 +492,6 @@
             "To store URLs"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 51
     },
     {
@@ -620,7 +503,6 @@
             "Document index"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 52
     },
     {
@@ -632,7 +514,6 @@
             "To adjust document rank"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 53
     },
     {
@@ -644,20 +525,7 @@
             "It ignores multi-graded relevance"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 54
-    },
-    {
-        "question": "In Dungeons & Dragons, which of the following dice is most commonly used for determining success in combat or actions?",
-        "answers": [
-            "D6 (six-sided die)",
-            "D8 (eight-sided die)",
-            "D20 (twenty-sided die)",
-            "D10 (ten-sided die)"
-        ],
-        "correct": 3,
-        "category": 1,
-        "question_id": 55
     },
     {
         "question": "Why does the Probability Ranking Principle (PRP) not always guarantee optimal retrieval results in practice?",
@@ -668,7 +536,6 @@
             "The ranking does not account for document verbosity or scope"
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 56
     },
     {
@@ -680,7 +547,6 @@
             "docid only"
         ],
         "correct": 4,
-        "category": 0,
         "question_id": 57
     },
     {
@@ -692,32 +558,7 @@
             "It fails to consider the relevance of common phrases in a query"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 58
-    },
-    {
-        "question": "In the \"Star Wars\" universe, what is the name of the planet where Anakin Skywalker loses his duel against Obi-Wan Kenobi?",
-        "answers": [
-            "Tatooine",
-            "Hoth",
-            "Mustafar",
-            "Naboo"
-        ],
-        "correct": 3,
-        "category": 1,
-        "question_id": 59
-    },
-    {
-        "question": "In The Matrix movie series, what is Neo's real name?*",
-        "answers": [
-            "Thomas Anderson",
-            "John Connor",
-            "Peter Parker",
-            "Jason Bourne"
-        ],
-        "correct": 1,
-        "category": 1,
-        "question_id": 60
     },
     {
         "question": "How does BM25 differ from TF-IDF in document ranking?",
@@ -728,7 +569,6 @@
             "It penalizes documents with high pagerank."
         ],
         "correct": 1,
-        "category": 0,
         "question_id": 61
     },
     {
@@ -740,7 +580,6 @@
             "It normalizes query terms"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 62
     },
     {
@@ -752,7 +591,6 @@
             "The recall of the top document"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 63
     },
     {
@@ -764,20 +602,7 @@
             "Jaccard coefficient"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 64
-    },
-    {
-        "question": "In Star Trek: The Next Generation, what is the name of the android character played by Brent Spiner?",
-        "answers": [
-            "Worf",
-            "Data",
-            "Riker",
-            "La Forge"
-        ],
-        "correct": 2,
-        "category": 1,
-        "question_id": 65
     },
     {
         "question": "Which of the following metrics is used to measure overlap between two sets?",
@@ -788,7 +613,6 @@
             "F-measure"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 66
     },
     {
@@ -800,7 +624,6 @@
             "It avoids using stop words"
         ],
         "correct": 3,
-        "category": 0,
         "question_id": 67
     },
     {
@@ -812,7 +635,6 @@
             "The number of indexed terms"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 68
     },
     {
@@ -824,7 +646,6 @@
             "By storing document frequencies separately"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 69
     },
     {
@@ -836,7 +657,6 @@
             "To index terms by their impact"
         ],
         "correct": 2,
-        "category": 0,
         "question_id": 70
     }
 ]
