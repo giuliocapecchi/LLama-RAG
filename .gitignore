@@ -22,5 +22,6 @@ elements.pkl
 /chunks
 *.pkl
 /nougat-output
-/evaluation/res
 /evaluation/RAG_quiz_runs
+/evaluation/open-questions
+*.mmd
