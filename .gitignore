@@ -25,3 +25,4 @@ elements.pkl
 /evaluation/RAG_quiz_runs
 /evaluation/open-questions
 *.mmd
+/LM-project
