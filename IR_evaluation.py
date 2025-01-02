@@ -59,6 +59,7 @@ def evaluate_retrieval(
         
         # Get top-k results for maximum k
         max_k = max(k_values)
+        print("max_k: ", max_k)
         scores_and_indices = embeddings_model.similarity(
             query_embeddings[query_idx:query_idx+1],
             doc_embeddings,
@@ -79,7 +80,7 @@ def evaluate_retrieval(
     results = {}
     for metric in metrics:
         results[str(metric)] = calc_aggregate([metric], qrels, run)
-
+    
     return results
 
 
@@ -156,7 +157,7 @@ if __name__ == "__main__":
         embeddings_model=embeddings_model,
         corpus=corpus,
         queries=queries,
-        qrels=qrels,  # Passa i qrels alla funzione
+        qrels=qrels, 
         dataset_embeddings=dataset_embeddings
     )
     
