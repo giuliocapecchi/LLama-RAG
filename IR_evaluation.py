@@ -7,8 +7,6 @@ import os
 import json
 import random
 
-
-
 def evaluate_retrieval(
     embeddings_model,
     corpus: List[str],
@@ -34,6 +32,7 @@ def evaluate_retrieval(
         Dictionary containing evaluation metrics
     """
     # Embed documents and queries
+    print("Embedding documents...")
     doc_embeddings = embeddings_model.encode(
         corpus,
         prompt_name="document",
@@ -41,7 +40,9 @@ def evaluate_retrieval(
         convert_to_tensor=True,
         show_progress_bar=True
     )
+    print("Document embeddings shape:", doc_embeddings.shape)
     
+    print("Embedding queries...")
     query_embeddings = embeddings_model.encode(
         [q['question'] for q in queries],
         prompt_name="query",
@@ -49,6 +50,7 @@ def evaluate_retrieval(
         convert_to_tensor=True,
         show_progress_bar=True
     )
+    print("Query embeddings shape:", query_embeddings.shape)
     
     # Initialize run dictionary for storing rankings
     run = defaultdict(dict)
@@ -56,33 +58,37 @@ def evaluate_retrieval(
     # For each query
     for query_idx, query in enumerate(queries):
         query_id = query['question_id']
+        print(f"Processing query {query_id}...")
         
         # Get top-k results for maximum k
         max_k = max(k_values)
-        print("max_k: ", max_k)
-        scores_and_indices = embeddings_model.similarity(
+        
+        similarities = embeddings_model.similarity(
             query_embeddings[query_idx:query_idx+1],
             doc_embeddings,
-       )
-        
-        scores_and_indices = scores_and_indices.topk(max_k)
-
-        retrieved_doc_indices = scores_and_indices[1].cpu().numpy()[0]
+        )
         
         # Store rankings
-        for rank, doc_idx in enumerate(retrieved_doc_indices):
-            run[query_id][str(doc_idx)] = max_k - rank  # Higher score for higher ranks
+        topk_values, topk_indices = similarities.topk(max_k)
+        print(f"Top-{max_k} scores and indices for query {query_id}: values={topk_values}, indices={topk_indices}")
+        
+        retrieved_doc_indices = topk_indices.cpu().numpy()[0]
+        similarity_scores = topk_values.cpu().numpy()[0]
+
+        # Store rankings
+        for rank, (doc_idx, score) in enumerate(zip(retrieved_doc_indices, similarity_scores)):
+            run[query_id][str(doc_idx)] = float(score)  # Use original similarity scores
     
 
-    metrics = [AP(rel=2), nDCG, nDCG@10, Recall(rel=2)@1000]
+    metrics = [AP, nDCG, nDCG@10, Recall@1000]
 
     # Calculate metrics using calc_aggregate
     results = {}
     for metric in metrics:
         results[str(metric)] = calc_aggregate([metric], qrels, run)
+        print(f"Metric {metric}: {results[str(metric)]}")
     
     return results
-
 
 def load_qrels(qrels_path: str) -> Dict[str, Dict[str, int]]:
     """
@@ -96,8 +102,6 @@ def load_qrels(qrels_path: str) -> Dict[str, Dict[str, int]]:
             query_id, doc_id, relevance, _ = line.strip().split()
             qrels[query_id][doc_id] = int(relevance)
     return dict(qrels)
-    
-
 
 def extract_questions(file_path):
     """
@@ -112,16 +116,14 @@ def extract_questions(file_path):
             }
             for item in data
         ]
-    
-
 
 if __name__ == "__main__":
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     embeddings_model = SentenceTransformer(
-    "jxm/cde-small-v1",
-    trust_remote_code=True,
+        "jxm/cde-small-v1",
+        trust_remote_code=True,
     ).to(device)
 
     corpus = []
@@ -139,7 +141,6 @@ if __name__ == "__main__":
 
     queries = extract_questions("evaluation/open_questions.json")
     print(f"Loaded {len(queries)} questions.")
-
 
     minicorpus_size = embeddings_model[0].config.transductive_corpus_size # 512
     random.seed(424242)
