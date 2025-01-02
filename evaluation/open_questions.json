@@ -17,7 +17,7 @@
     },
     {
         "question_id": "5",
-        "question": "What is BM25?"
+        "question": "What is the Okapi BM25?"
     },
     {
         "question_id": "6",
@@ -165,11 +165,11 @@
     },
     {
         "question_id": "42",
-        "question": "What stemming means?"
+        "question": "What does stemming means?"
     },
     {
         "question_id": "43",
-        "question": "What tokenisation means?"
+        "question": "What is tokenisation?"
     },
     {
         "question_id": "44",
