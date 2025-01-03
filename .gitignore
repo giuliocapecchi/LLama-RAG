@@ -26,3 +26,4 @@ elements.pkl
 /evaluation/open-questions
 *.mmd
 /LM-project
+*_run.tsv
