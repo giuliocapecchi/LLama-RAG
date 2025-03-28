@@ -1,4 +1,4 @@
-# Interactive RAG Pipeline: Chat with Your PDFs Using LLama 3.2 3B
+# Chat with Your PDFs Using LLama 3.2 3B
 
 This project implements a **Retrieval-Augmented Generation (RAG)** system, a modern technique that integrates document retrieval and answer generation. The RAG approach enhances the performance of large language models (LLMs) by incorporating external information to improve the model's ability to answer queries outside its original training data. This is especially beneficial for businesses that cannot afford to build a ChatGPT-like LLM from scratch. RAG provides a faster and more efficient alternative than re-training the model, as it tries to expand the model knowledge by simply providing relevant documents as data sources to the user's queries.
 
